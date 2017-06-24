@@ -32,4 +32,26 @@ player = {
 	height = 100
 }
 
--- 5. 
+-- 5. add bullets
+-- load
+bullets = {
+	{x = 10, y = 500},
+	{x = 50, y = 500},
+	{x = 100, y = 500},
+	{x = 300, y = 500}
+}
+
+bulletWidth = 30
+bulletHeight = 30
+bulletSpeed = 20
+
+-- update
+for index, bullet in ipairs(bullets) do
+	bullet.y = bullet.y - bulletSpeed
+end
+
+-- draw
+for index, bullet in ipairs(bullets) do
+	love.graphics.rectangle("fill", bullet.x, bullet.y, bulletWidth, bulletHeight)
+end
+
