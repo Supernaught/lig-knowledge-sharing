@@ -10,12 +10,7 @@ function love.load()
 		height = 50
 	}
 
-	bullets = {
-		{x = 10, y = 500},
-		{x = 50, y = 500},
-		{x = 100, y = 500},
-		{x = 300, y = 500}
-	}
+	bullets = {}
 
 	bulletWidth = 30
 	bulletHeight = 30
@@ -56,12 +51,8 @@ function love.draw()
 end
 
 function love.keypressed(key)
-	-- if key == "space" then
-	-- 	newBullet = {
-	-- 		x = player.x,
-	-- 		y = player.y
-	-- 	}
-
-	-- 	table.insert(bullets, newBullet)
-	-- end
+	if key == "space" then
+		newBullet = {x = player.x, y = player.y}
+		table.insert(bullets, newBullet)
+	end
 end

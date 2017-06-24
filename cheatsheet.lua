@@ -55,3 +55,10 @@ for index, bullet in ipairs(bullets) do
 	love.graphics.rectangle("fill", bullet.x, bullet.y, bulletWidth, bulletHeight)
 end
 
+-- 6. add shooting
+function love.keypressed(key)
+	if key == "space" then
+		newBullet = {x = player.x, y = player.y}
+		table.insert(bullets, newBullet)
+	end
+end
