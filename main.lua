@@ -26,13 +26,26 @@ function love.load()
 	enemyHeight = 30
 end
 
+
 function love.update(dt)
 	-- player movement
 	updateMovements()
 
 	-- update bullets
-	for index, bullet in ipairs(bullets) do
+	for bulletIndex, bullet in ipairs(bullets) do
 		bullet.y = bullet.y - bulletSpeed
+
+		for enemyIndex, enemy in ipairs(enemies) do
+			isColliding = checkCollision(
+				bullet.x, bullet.y, bulletWidth, bulletHeight,
+				enemy.x, enemy.y, enemyWidth, enemyHeight
+			)
+
+			if isColliding then
+				table.remove(bullets, bulletIndex)
+				table.remove(enemies, enemyIndex)
+			end
+		end
 	end
 
 	-- update enemies
@@ -75,4 +88,11 @@ function love.keypressed(key)
 		newBullet = {x = player.x, y = player.y}
 		table.insert(bullets, newBullet)
 	end
+end
+
+function checkCollision(x1,y1,w1,h1, x2,y2,w2,h2)
+	return x1 < x2+w2 and
+	     x2 < x1+w1 and
+	     y1 < y2+h2 and
+	     y2 < y1+h1
 end

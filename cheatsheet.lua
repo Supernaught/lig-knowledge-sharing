@@ -72,3 +72,25 @@ enemies = {
 
 enemyWidth = 60
 enemyHeight = 30
+
+-- 8. add bullet enemy collision
+-- add this inside bullets update
+for enemyIndex, enemy in ipairs(enemies) do
+	isColliding = checkCollision(
+		bullet.x, bullet.y, bulletWidth, bulletHeight,
+		enemy.x, enemy.y, enemyWidth, enemyHeight
+	)
+
+	if isColliding then
+		table.remove(bullets, bulletIndex)
+		table.remove(enemies, enemyIndex)
+	end
+end
+
+-- add this helper  function
+function checkCollision(x1,y1,w1,h1, x2,y2,w2,h2)
+	return x1 < x2+w2 and
+	     x2 < x1+w1 and
+	     y1 < y2+h2 and
+	     y2 < y1+h1
+end
