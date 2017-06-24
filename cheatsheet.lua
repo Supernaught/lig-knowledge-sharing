@@ -62,3 +62,13 @@ function love.keypressed(key)
 		table.insert(bullets, newBullet)
 	end
 end
+
+-- 7. add enemies (just copy paste bullets logic)
+enemies = {
+	{ x = 300, y = 0, speed = 2 },
+	{ x = 100, y = 0, speed = 5 },
+	{ x = 500, y = 0, speed = 3 },
+}
+
+enemyWidth = 60
+enemyHeight = 30
